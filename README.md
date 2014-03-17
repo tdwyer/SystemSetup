@@ -1,8 +1,8 @@
 #!/bin/bash
-# Thomas Dwyer <github@tomd.tel> https://tomd.tel/ GPLv3
+#### Thomas Dwyer <github@tomd.tel> https://tomd.tel/ GPLv3
 
 
-# Preform these actions as the Root user
+## Preform these actions as the Root user
 
 
     if [[ ! $UID -eq 0 ] ;then
@@ -11,7 +11,7 @@
     fi
 
 
-# System Installation and Updating Outline
+## System Installation and Updating Outline
 
 
     main() {
@@ -36,10 +36,10 @@
         esac
 
 
-# Updateing System
+## Updateing System
 
 
-## Update system configs
+### Update system configs
 
 
     updateSystem() {
@@ -50,7 +50,7 @@
     }
 
 
-## Update vim bundles
+### Update vim bundles
 
 
     updateVimBundles() {
@@ -58,7 +58,7 @@
     }
 
 
-# System Prep and Setup
+## System Prep and Setup
 
 
     systemSetup() {
@@ -75,7 +75,7 @@
     }
 
 
-## Remove control over Vim configs from Debian
+### Remove control over Vim configs from Debian
 
 
     cleanDebian() {
@@ -87,10 +87,10 @@
     }
 
 
-## Backup current configs
+### Backup current configs
 
 
-### Backup any original configs
+#### Backup any original configs
 
 
     backupSystemConfigs() {
@@ -101,7 +101,7 @@
     }
 
 
-### Backup and config users home
+#### Backup and config users home
 
 
     backupUsersConfigs() {
@@ -123,10 +123,10 @@
     }
 
 
-# Configure System
+## Configure System
 
 
-## Get configs
+### Get configs
 
 
     gitConfigs() {
@@ -137,7 +137,7 @@
     }
 
 
-## Configure configs
+### Configure configs
 
 
     configureConfigs() {
@@ -149,10 +149,10 @@
     }
 
 
-## Configure vim bundles
+### Configure vim bundles
 
 
-### Clone repos
+#### Clone repos
 
 
     gitBundles() {
@@ -170,10 +170,10 @@
     }
 
 
-# Install Configurations
+## Install Configurations
 
 
-## Symbolic Link Install
+### Symbolic Link Install
 
 
     installSystemConfigsByLink() {
@@ -188,7 +188,7 @@
     }
 
 
-## Soft link install
+### Soft link install
 
 
     installBundlesByLink() {
@@ -197,10 +197,10 @@
     }
 
 
-# Lets get to it!
+## Lets get to it!
 
 
     main ${@}
 
 
-# vim: set ts=4 sw=4 tw=80 et :
+## vim: set ts=4 sw=4 tw=80 et :
