@@ -1,8 +1,8 @@
 #!/bin/bash
-# Thomas Dwyer <github@tomd.tel> https://tomd.tel/ GPLv3
+#### Thomas Dwyer <github@tomd.tel> https://tomd.tel/ GPLv3
 
 
-# Preform these actions as the Root user
+## Preform these actions as the Root user
 
 
     if [[ ! $UID -eq 0 ] ;then
@@ -11,7 +11,7 @@
     fi
 
 
-# System Installation and Updating Outline
+## System Installation and Updating Outline
 
 
     main() {
@@ -36,10 +36,10 @@
         esac
 
 
-# Updateing System
+## Updateing System
 
 
-## Update system configs
+### Update system configs
 
 
     updateSystem() {
@@ -50,7 +50,7 @@
     }
 
 
-## Update vim bundles
+### Update vim bundles
 
 
     updateVimBundles() {
@@ -58,7 +58,7 @@
     }
 
 
-# System Prep and Setup
+## System Prep and Setup
 
 
     systemSetup() {
@@ -75,7 +75,7 @@
     }
 
 
-## Remove control over Vim configs from Debian
+### Remove control over Vim configs from Debian
 
 
     cleanDebian() {
@@ -87,10 +87,10 @@
     }
 
 
-## Backup current configs
+### Backup current configs
 
 
-### Backup any original configs
+#### Backup any original configs
 
 
     backupSystemConfigs() {
@@ -101,7 +101,7 @@
     }
 
 
-### Backup and config users home
+#### Backup and config users home
 
 
     backupUsersConfigs() {
@@ -113,20 +113,21 @@
         for config in home-configs ;do
             for dir in $(ls /home) ;do
                 if [[ ${dir} != "lost+found" ]] ;then
-                mv /home/${dir}/${config} /home/${dir}/${config}-orig
-                mkdir -p /home/${dir}/.vim/{tmp,backups}
-                touch /home/${dir}/.zshrc
-                touch /home/${dir}/.zprofile
+                    mv /home/${dir}/${config} /home/${dir}/${config}-orig
+                    mkdir -p /home/${dir}/.vim/{tmp,backups}
+                    touch /home/${dir}/.zshrc
+                    touch /home/${dir}/.zprofile
                 fi
+                chown -R ${dir}:${dir} /home/${dir}
             done
         done
     }
 
 
-# Configure System
+## Configure System
 
 
-## Get configs
+### Get configs
 
 
     gitConfigs() {
@@ -137,22 +138,22 @@
     }
 
 
-## Configure configs
+### Configure configs
 
 
     configureConfigs() {
         mkdir -p /usr/src/vim/{src,bundle}
         if [[ -x $(which apt-get) ]] ;then
             cp /usr/src/vim-etc/vimrc /usr/src/vim-etc/vimrc.not.tracked
-            sed -i 's/archlinux.vim/debian.vim/' /usr/src/vim-etc/vimrc.no.track
+            sed -i 's/archlinux.vim/debian.vim/' /usr/src/vim-etc/vimrc.not.tracked
         fi
     }
 
 
-## Configure vim bundles
+### Configure vim bundles
 
 
-### Clone repos
+#### Clone repos
 
 
     gitBundles() {
@@ -170,25 +171,25 @@
     }
 
 
-# Install Configurations
+## Install Configurations
 
 
-## Symbolic Link Install
+### Symbolic Link Install
 
 
     installSystemConfigsByLink() {
         cd /usr/src
         ln -s dircolors-jellybeans dircolors
-        ln -s /usr/src/zsh /etc/zsh
-        ln -s /usr/src/vim /etc/vim
-        ln -s /usr/src/vim/vimrc /etc/vimrc
-        ln -s /usr/src/vim/gvimrc /etc/gvimrc
-        ln -s /usr/src/screen /etc/screen
-        ln -s /usr/src/screen/screenrc /etc/screenrc
+        ln -s /usr/src/zshrc /etc/zsh
+        ln -s /usr/src/vimrc /etc/vim
+        ln -s /usr/src/vimrc/vimrc /etc/vimrc
+        ln -s /usr/src/vimrc/gvimrc /etc/gvimrc
+        ln -s /usr/src/screenrc /etc/screen
+        ln -s /usr/src/screenrc/screenrc /etc/screenrc
     }
 
 
-## Soft link install
+### Soft link install
 
 
     installBundlesByLink() {
@@ -197,7 +198,7 @@
     }
 
 
-# Lets get to it!
+## Lets get to it!
 
 
     main ${@}
