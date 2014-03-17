@@ -144,8 +144,8 @@
     configureConfigs() {
         mkdir -p /usr/src/vim/{src,bundle}
         if [[ -x $(which apt-get) ]] ;then
-            cp /usr/src/vim-etc/vimrc /usr/src/vim-etc/vimrc.not.tracked
-            sed -i 's/archlinux.vim/debian.vim/' /usr/src/vim-etc/vimrc.not.tracked
+            cp /usr/src/vim-etc/vimrc /usr/src/vim-etc/vimrc.donttrack
+            sed -i 's/archlinux.vim/debian.vim/' /usr/src/vim-etc/vimrc.donttrack
         fi
     }
 
